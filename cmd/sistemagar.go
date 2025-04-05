@@ -6,6 +6,7 @@ import (
 	"github.com/spf13/cobra"
 
 	"sistemagestoarchivos/funcionalidad"
+	"sistemagestoarchivos/helpers"
 )
 
 var listUICmd = &cobra.Command{
@@ -33,7 +34,7 @@ func showfilesanddirectories(cmd *cobra.Command, args []string) {
 	tree := tview.NewTreeView().SetRoot(rootNode).SetCurrentNode(rootNode)
 
 	//funcion anonima que enlista los directorios y archivos en forma de arbol
-	funcionalidad.AddChildren(rootNode, rootDir)
+	helpers.AddChildren(rootNode, rootDir)
 
 	//lo que se ejecutara cuando presiones enter
 
