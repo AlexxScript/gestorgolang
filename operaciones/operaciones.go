@@ -21,6 +21,12 @@ func Crear(path string, tree *tview.TreeView, app *tview.Application, node *tvie
 			if strings.HasSuffix(name, "/") {
 				os.MkdirAll(full, 0755) // se crea el directorio con los permisos
 			} else {
+				//leer (l) 4
+				//escribir (w) 2
+				//ejecutar (x) 1
+				//6: permiso de leer y escribir para los usuarios
+				//4: permiso para leer de un grupo
+				//4: permiso para leer para cualquier otro usuario
 				os.WriteFile(full, []byte(""), 0644) // crea el archivo vacio con los permisos
 			}
 			helpers.AddChildren(node, path)        //se refresca el nodo en el que se encuentra para que aparezca el archivo o directorio nuevo
