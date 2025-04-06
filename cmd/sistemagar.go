@@ -9,15 +9,15 @@ import (
 	"sistemagestoarchivos/helpers"
 )
 
-var listUICmd = &cobra.Command{
-	Use:   "list-ui [directory]", //nombre del comando con el cual se ejecutara la funcionalidad
+var sgest = &cobra.Command{
+	Use:   "sgest [directory]", //nombre del comando con el cual se ejecutara la funcionalidad
 	Short: "Explorador interactivo de archivos",
 	Args:  cobra.MaximumNArgs(1),
 	Run:   showfilesanddirectories, //funcion que se ejecutara al ejecutar el comando
 }
 
 func init() {
-	rootCmd.AddCommand(listUICmd) //inicializacion del comando
+	rootCmd.AddCommand(sgest) //inicializacion del comando
 }
 
 // cmd puntero hacia el paquete decobra
@@ -33,6 +33,7 @@ func showfilesanddirectories(cmd *cobra.Command, args []string) {
 
 	rootNode := tview.NewTreeNode(rootDir).SetReference(rootDir).SetExpanded(true)
 	tree := tview.NewTreeView().SetRoot(rootNode).SetCurrentNode(rootNode)
+	tree.SetBorder(true).SetTitle(" Explorador 📁 | 'c' Crear   'd' Eliminar   'e' Renombrar   'm' Mover")
 
 	//funcion anonima que enlista los directorios y archivos en forma de arbol
 	helpers.AddChildren(rootNode, rootDir)

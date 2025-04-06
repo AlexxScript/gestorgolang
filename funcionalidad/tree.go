@@ -27,7 +27,7 @@ func ControlarEnter(node *tview.TreeNode, app *tview.Application) {
 		//si se presiono enter a un archivo entonces se va a abrir en el editor de texto vim
 		// se suspende la ejecución del sistema
 		app.Suspend(func() {
-			cmd := exec.Command("vim", path)
+			cmd := exec.Command("nano", path)
 			cmd.Stdin = os.Stdin
 			cmd.Stdout = os.Stdout
 			cmd.Stderr = os.Stderr
@@ -44,7 +44,7 @@ func CapturaOpcion(tree *tview.TreeView, app *tview.Application, event *tcell.Ev
 	case 'c':
 		operaciones.Crear(path, tree, app, node)
 
-	case 'd':
+	case 'e':
 		operaciones.Eliminar(path, tree, app, rootNode)
 
 	case 'r':

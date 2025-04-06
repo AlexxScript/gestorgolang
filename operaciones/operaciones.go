@@ -38,9 +38,9 @@ func Crear(path string, tree *tview.TreeView, app *tview.Application, node *tvie
 func Eliminar(path string, tree *tview.TreeView, app *tview.Application, rootNode *tview.TreeNode) {
 	modal := tview.NewModal()
 	modal.SetText("¿Estás seguro de querer eliminar " + path + "? (S/N)").
-		AddButtons([]string{"s", "n"}).
+		AddButtons([]string{"si", "no"}).
 		SetDoneFunc(func(buttonIndex int, buttonLabel string) {
-			if strings.ToLower(buttonLabel) == "s" {
+			if strings.ToLower(buttonLabel) == "si" {
 				// Eliminar archivo o directorio
 				os.RemoveAll(path)
 

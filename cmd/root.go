@@ -3,9 +3,9 @@ package cmd
 import "github.com/spf13/cobra"
 
 var rootCmd = &cobra.Command{
-	Use:   "msg",
-	Short: "mensaje corto",
-	Long:  "mensaje largo",
+	Use:   "atajos",
+	Short: "[c] Crear   [d] Eliminar   [r] Renombrar   [m] Mover",
+	Long:  "[c] Crear   [d] Eliminar   [r] Renombrar   [m] Movermensaje",
 }
 
 func Execute() {
