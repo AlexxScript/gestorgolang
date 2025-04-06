@@ -23,6 +23,7 @@ func init() {
 // cmd puntero hacia el paquete decobra
 // argumentos que se van a pasar
 func showfilesanddirectories(cmd *cobra.Command, args []string) {
+	// caja := tview.NewBox().SetBorder(true).SetTitle("Gestor de archivos en golang")
 	app := tview.NewApplication() //creacion del cli intercativo
 	rootDir := "."
 
@@ -37,7 +38,6 @@ func showfilesanddirectories(cmd *cobra.Command, args []string) {
 	helpers.AddChildren(rootNode, rootDir)
 
 	//lo que se ejecutara cuando presiones enter
-
 	tree.SetSelectedFunc(func(node *tview.TreeNode) {
 		funcionalidad.ControlarEnter(node, app)
 	})
