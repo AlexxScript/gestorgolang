@@ -33,7 +33,7 @@ func showfilesanddirectories(cmd *cobra.Command, args []string) {
 	}
 
 	fmt.Println(user.Username)
-	app := tview.NewApplication() //creacion del cli intercativo
+	app := tview.NewApplication() //creacion del cli intercativo  detecta las teclas, dibuja la UI, refresca la pantalla, etc.
 	rootDir := "."
 
 	if len(args) > 0 {
@@ -41,7 +41,7 @@ func showfilesanddirectories(cmd *cobra.Command, args []string) {
 	}
 
 	rootNode := tview.NewTreeNode(rootDir).SetReference(rootDir).SetExpanded(true)
-	tree := tview.NewTreeView().SetRoot(rootNode).SetCurrentNode(rootNode)
+	tree := tview.NewTreeView().SetRoot(rootNode).SetCurrentNode(rootNode) //crear el arbol visual
 	tree.SetBorder(true).SetTitle(" Explorador 📁 | 'c' Crear   'e' Eliminar   'r' Renombrar   'm' Mover 	'p' Gestionar permisos")
 
 	//funcion anonima que enlista los directorios y archivos en forma de arbol

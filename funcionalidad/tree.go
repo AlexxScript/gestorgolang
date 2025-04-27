@@ -39,6 +39,7 @@ func ControlarEnter(node *tview.TreeNode, app *tview.Application) {
 func CapturaOpcion(tree *tview.TreeView, app *tview.Application, event *tcell.EventKey, rootNode *tview.TreeNode) *tcell.EventKey {
 	node := tree.GetCurrentNode()        //obtenemos el nodo en el que nos encontramos (direccion en memoria)
 	path := node.GetReference().(string) //transformamos la direccion en caracteres
+
 	// se leen los caracteres en ascii
 	switch event.Rune() {
 	case 'c':
@@ -54,7 +55,7 @@ func CapturaOpcion(tree *tview.TreeView, app *tview.Application, event *tcell.Ev
 		operaciones.Mover(path, tree, app, rootNode)
 
 	case 'p':
-		operaciones.AgregarLectura()
+		operaciones.GestionarPermisos(path, tree, app, rootNode)
 	}
 	return event
 }
