@@ -7,6 +7,9 @@ import (
 
 	"sistemagestoarchivos/funcionalidad"
 	"sistemagestoarchivos/helpers"
+
+	"fmt"
+	"os/user"
 )
 
 var sgest = &cobra.Command{
@@ -24,6 +27,12 @@ func init() {
 // argumentos que se van a pasar
 func showfilesanddirectories(cmd *cobra.Command, args []string) {
 	// caja := tview.NewBox().SetBorder(true).SetTitle("Gestor de archivos en golang")
+	user, err := user.Current()
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(user.Username)
 	app := tview.NewApplication() //creacion del cli intercativo
 	rootDir := "."
 
@@ -33,7 +42,7 @@ func showfilesanddirectories(cmd *cobra.Command, args []string) {
 
 	rootNode := tview.NewTreeNode(rootDir).SetReference(rootDir).SetExpanded(true)
 	tree := tview.NewTreeView().SetRoot(rootNode).SetCurrentNode(rootNode)
-	tree.SetBorder(true).SetTitle(" Explorador 📁 | 'c' Crear   'e' Eliminar   'r' Renombrar   'm' Mover")
+	tree.SetBorder(true).SetTitle(" Explorador 📁 | 'c' Crear   'e' Eliminar   'r' Renombrar   'm' Mover 	'p' Gestionar permisos")
 
 	//funcion anonima que enlista los directorios y archivos en forma de arbol
 	helpers.AddChildren(rootNode, rootDir)

@@ -1,6 +1,7 @@
 package helpers
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 
@@ -8,20 +9,27 @@ import (
 )
 
 func AddChildren(node *tview.TreeNode, path string) {
-	node.ClearChildren()           //limpia el arreglo
-	files, err := os.ReadDir(path) //lee los elementos del directorio y los retorna
+	node.ClearChildren()
+
+	files, err := os.ReadDir(path)
 	if err != nil {
 		node.AddChild(tview.NewTreeNode("Error leyendo dir"))
 		return
 	}
 
-	//for que adiciona los elementos que se encuentran en el directorio a la vista o el arbol
 	for _, file := range files {
 		childPath := filepath.Join(path, file.Name())
-		childNode := tview.NewTreeNode(file.Name()).SetReference(childPath)
+		info, err := file.Info()
+		if err != nil {
+			continue
+		}
+		perms := info.Mode().Perm()
+		texto := fmt.Sprintf("%s (%s)", file.Name(), perms.String())
+		childNode := tview.NewTreeNode(texto).SetReference(childPath)
 		if file.IsDir() {
 			childNode.SetColor(tview.Styles.SecondaryTextColor)
 		}
-		node.AddChild(childNode) //se adiciona el archivo o carpeta al nodo padre de manera grafica
+
+		node.AddChild(childNode)
 	}
 }

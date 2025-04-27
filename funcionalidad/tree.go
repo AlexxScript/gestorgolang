@@ -51,7 +51,10 @@ func CapturaOpcion(tree *tview.TreeView, app *tview.Application, event *tcell.Ev
 		operaciones.Renombrar(path, tree, app, rootNode)
 
 	case 'm':
-		operaciones.Renombrar(path, tree, app, rootNode)
+		operaciones.Mover(path, tree, app, rootNode)
+
+	case 'p':
+		operaciones.AgregarLectura()
 	}
 	return event
 }
