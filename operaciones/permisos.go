@@ -9,6 +9,7 @@ import (
 	"strconv"
 	"syscall"
 
+	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
 )
 
@@ -63,7 +64,25 @@ func GestionarPermisos(path string, tree *tview.TreeView, app *tview.Application
 		AddItem(grupo, 1, 2, 1, 1, 0, 100, false).
 		AddItem(propietario, 1, 3, 1, 1, 0, 100, false)
 
-	if err := tview.NewApplication().SetRoot(grid, true).SetFocus(grid).Run(); err != nil {
+	captura := tview.NewTextView().
+		SetDynamicColors(true).
+		SetText("Presiona [red]Esc[white] para volver").
+		SetTextAlign(tview.AlignCenter)
+
+	captura.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
+		switch event.Key() {
+		case tcell.KeyEsc:
+			app.SetRoot(tree, true).SetFocus(tree)
+			return nil
+		}
+		return event
+	})
+
+	layout := tview.NewFlex().SetDirection(tview.FlexRow).
+		AddItem(captura, 1, 0, true).
+		AddItem(grid, 0, 1, false)
+
+	if err := app.SetRoot(layout, true).SetFocus(captura).Run(); err != nil {
 		panic(err)
 	}
 }
