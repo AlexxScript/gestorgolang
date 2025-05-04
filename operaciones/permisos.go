@@ -1,5 +1,7 @@
 package operaciones
 
+// https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-repositories-for-a-user
+// https://docs.github.com/en
 // https://labex.io/tutorials/go-how-to-handle-file-read-permissions-450986
 
 import (
@@ -48,7 +50,6 @@ func GestionarPermisos(path string, tree *tview.TreeView, app *tview.Application
 		nombrePropietario = "Desconocido"
 	}
 
-	// Ahora creamos los TextView llenándolos dinámicamente
 	nombre := newPrimitive(fmt.Sprintf("Nombre: %s", fileInfo.Name()))
 	permisos := newPrimitive(fmt.Sprintf("Permisos: %s", permisosAr))
 	grupo := newPrimitive(fmt.Sprintf("Grupo: %s", nombreGrupo))
