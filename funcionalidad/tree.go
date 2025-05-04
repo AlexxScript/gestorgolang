@@ -56,6 +56,9 @@ func CapturaOpcion(tree *tview.TreeView, app *tview.Application, event *tcell.Ev
 
 	case 'p':
 		operaciones.GestionarPermisos(path, tree, app, rootNode)
+
+	case 'g':
+		operaciones.ObtenerUsuarioRepo(path, tree, app, rootNode)
 	}
 	return event
 }
