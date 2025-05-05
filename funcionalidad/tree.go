@@ -59,6 +59,9 @@ func CapturaOpcion(tree *tview.TreeView, app *tview.Application, event *tcell.Ev
 
 	case 'g':
 		operaciones.ObtenerUsuarioRepo(path, tree, app, rootNode)
+
+	case 'q':
+		app.Stop()
 	}
 	return event
 }

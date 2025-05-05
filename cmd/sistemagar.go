@@ -42,7 +42,7 @@ func showfilesanddirectories(cmd *cobra.Command, args []string) {
 
 	rootNode := tview.NewTreeNode(rootDir).SetReference(rootDir).SetExpanded(true)
 	tree := tview.NewTreeView().SetRoot(rootNode).SetCurrentNode(rootNode) //crear el arbol visual
-	tree.SetBorder(true).SetTitle(" Explorador 📁 | 'c' Crear   'e' Eliminar   'r' Renombrar   'm' Mover 	'p' Gestionar permisos")
+	tree.SetBorder(true).SetTitle("'g' Github | Explorador 📁 | 'c' Crear   'e' Eliminar   'r' Renombrar   'm' Mover 	'p' Gestionar permisos")
 
 	//funcion anonima que enlista los directorios y archivos en forma de arbol
 	helpers.AddChildren(rootNode, rootDir)
